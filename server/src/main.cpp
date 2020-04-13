@@ -1,6 +1,7 @@
 #include <QCoreApplication>
 
 #include "servercore.h"
+#include "databaseengine.h"
 
 int main(int argc, char *argv[])
 {
@@ -8,6 +9,5 @@ int main(int argc, char *argv[])
 
 	ServerCore server;
 	server.startServer();
-
 	return a.exec();
 }
