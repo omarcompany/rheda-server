@@ -9,8 +9,8 @@ ServerCore::ServerCore()
 {
 	m_socket = new QTcpSocket(this);
 
-	connect(m_socket, SIGNAL(readyRead()), this, SLOT(sockReady()));
-	connect(m_socket, SIGNAL(disconnected()), this, SLOT(sockDisconnect()));
+    connect(m_socket, &QTcpSocket::readyRead, this, &ServerCore::socketReady);
+    connect(m_socket, &QTcpSocket::disconnected, this, &ServerCore::socketDisconnect);
 }
 
 void ServerCore::startServer()
@@ -33,14 +33,19 @@ void ServerCore::incomingConnection(qintptr socketDescriptor)
 	m_socket->write("You are connected.");
 }
 
-void ServerCore::sockReady()
+void ServerCore::socketReady()
 {
 	if(m_socket->waitForConnected(1000)) {
 		m_socket->waitForReadyRead(1000);
 		/*
 		 * Читаем сообщение от клиента здесь
 		 */
-	}
+    }
+}
+
+void ServerCore::socketDisconnect()
+{
+    qDebug() << "disconnected";
 }
 
 

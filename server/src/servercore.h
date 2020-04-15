@@ -14,8 +14,10 @@ public:
 public slots:
 	void startServer();
 	void incomingConnection(qintptr socketDescriptor) override;
-	void sockReady();
-	void sockDisconnect();
+
+private slots:
+    void socketReady();
+    void socketDisconnect();
 
 private:
 	QTcpSocket *m_socket;
