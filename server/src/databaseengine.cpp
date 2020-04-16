@@ -7,6 +7,8 @@
 #include <QDebug>
 #include <QDir>
 
+#include "user.h"
+
 static const QString DATABASE_HOSTNAME = "localhost";
 static const QString DATABASE_NAME = "database";
 static const QString TABLE_NAME = "users_table";
@@ -25,40 +27,39 @@ void DatabaseEngine::connectToDatabase()
         qDebug() << "Database not found";
 }
 
-void DatabaseEngine::addNewUser(const QString &userName, const QString &login,
-                                const QString &password, const QString &email)
+void DatabaseEngine::registerUser(const User &User)
 {
-    if (!userExists(login, email)) {
-        QSqlQuery query;
-        query.prepare(QString("INSERT INTO %1 (user_name, login, password, email) "
-                              "VALUES (?, ?, ?, ?)").arg(TABLE_NAME));
+    if (!userExists(User)) {
+		QSqlQuery query;
+		query.prepare(QString("INSERT INTO %1 (user_name, login, password, email) "
+							  "VALUES (?, ?, ?, ?)").arg(TABLE_NAME));
 
-        query.addBindValue(userName);
-        query.addBindValue(login);
-        query.addBindValue(password);
-        query.addBindValue(email);
+        query.addBindValue(User.name);
+        query.addBindValue(User.login);
+        query.addBindValue(User.password);
+        query.addBindValue(User.email);
 
-        if (!query.exec()) {
-            qDebug() << "Error insert into " << TABLE_NAME;
-            qDebug() << query.lastError().text();
-        }
+		if (!query.exec()) {
+			qDebug() << "Error insert into " << TABLE_NAME;
+			qDebug() << query.lastError().text();
+		}
 
-        qDebug() << "User has been registered.";
-    } else {
-        qDebug() << "User already exists!";
+		qDebug() << "User has been registered.";
+	} else {
+		qDebug() << "User already exists!";
     }
 }
 
-void DatabaseEngine::removeUser(const QString &login, const QString &email)
+void DatabaseEngine::removeUser(const User &user)
 {
-    if (userExists(login, email)) {
-        QSqlQuery query;
-        if (query.exec(QString("DELETE FROM %1 WHERE login == '%2';").arg(TABLE_NAME).arg(login)))
-            qDebug() << "User has been removed.";
-        else
-            qDebug() << query.lastError().text();
-    } else {
-        qDebug() << "User not found!";
+	if (userExists(user)) {
+		QSqlQuery query;
+		if (query.exec(QString("DELETE FROM %1 WHERE login == '%2';").arg(TABLE_NAME).arg(user.login)))
+			qDebug() << "User has been removed.";
+		else
+			qDebug() << query.lastError().text();
+	} else {
+		qDebug() << "User not found!";
     }
 }
 
@@ -79,7 +80,7 @@ void DatabaseEngine::closeDatabase()
         m_database.close();
 }
 
-bool DatabaseEngine::userExists(const QString &login, const QString &email)
+bool DatabaseEngine::userExists(const User &user)
 {
     QSqlQuery query;
 
@@ -90,9 +91,9 @@ bool DatabaseEngine::userExists(const QString &login, const QString &email)
         QString currentLogin = query.value(1).toString();
         QString currentEmail = query.value(3).toString();
 
-        if ((email == currentEmail) || (login == currentLogin))
-            return true;
-    }
+		if ((user.email == currentEmail) || (user.login == currentLogin))
+			return true;
+	}
     return false;
 }
 
