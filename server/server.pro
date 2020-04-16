@@ -1,6 +1,5 @@
 QT -= gui
-QT += core
-QT += network
+QT += core network sql
 
 CONFIG += c++11 console
 CONFIG -= app_bundle
@@ -8,6 +7,7 @@ CONFIG -= app_bundle
 DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
+        src/databaseengine.cpp \
         src/main.cpp \
         src/servercore.cpp
 
@@ -16,6 +16,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+        src/databaseengine.h \
         src/servercore.h
 
 INCLUDEPATH += src

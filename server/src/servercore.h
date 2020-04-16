@@ -21,7 +21,6 @@ private slots:
 
 private:
 	QTcpSocket *m_socket;
-
 };
 
 #endif // SERVERCORE_H

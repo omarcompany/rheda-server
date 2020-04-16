@@ -47,7 +47,3 @@ void ServerCore::socketDisconnect()
 {
     qDebug() << "disconnected";
 }
-
-
-
-
