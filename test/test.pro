@@ -11,5 +11,7 @@ HEADERS += \
     $$PATH_APP/databaseengine.h
 
 SOURCES += \
-    testcase.cpp \
-    $$PATH_APP/databaseengine.cpp
+    $$PATH_APP/databaseengine.cpp \
+    testcase.cpp
+
+

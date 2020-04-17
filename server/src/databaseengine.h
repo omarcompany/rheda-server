@@ -4,8 +4,8 @@
 #include <QObject>
 #include <QSqlDatabase>
 
-class DatabaseEngine: public QObject
-{
+
+class DatabaseEngine: public QObject {
 	Q_OBJECT
 
 	DatabaseEngine();
@@ -15,7 +15,8 @@ class DatabaseEngine: public QObject
 public:
 	void addNewUser(const QString &userName, const QString &login, const QString &password, const QString &email);
 	void removeUser(const QString &login, const QString &email);
-
+    void addFriend(const QString &nameRoot, const QString &nameFriend);
+    bool verification(const QString &email, const QString &password);
 	static DatabaseEngine &instance();
 
 private:
@@ -23,7 +24,7 @@ private:
 	void closeDatabase();
 	bool userExists(const QString &login, const QString &email);
 	void connectToDatabase();
-
+    void createTableUser(const QString &name);         // Создание таблицы пользователя в базе данных
 	QSqlDatabase m_database;
 };
 
