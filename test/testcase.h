@@ -13,10 +13,10 @@ public:
     ~TestCase();
 
 private slots:
-	void addNewUser_test();
+    void addNewUser_test();
 
 private:
-	DatabaseEngine *m_database;
+    DatabaseEngine *m_database;
 };
 
 #endif // TESTCASE_H

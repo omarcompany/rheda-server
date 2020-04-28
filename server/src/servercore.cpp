@@ -3,7 +3,7 @@
 #include <QString>
 #include <QDebug>
 
-#define PORTNUM 1272
+namespace  {const int PORT_NUMBER = 1272;}
 
 ServerCore::ServerCore()
 {
@@ -15,7 +15,7 @@ ServerCore::ServerCore()
 
 void ServerCore::startServer()
 {
-	if(this->listen(QHostAddress::Any, PORTNUM))
+    if(this->listen(QHostAddress::Any, PORT_NUMBER))
 		qDebug() << "Listening in  process...";
 	else
 		qDebug() << "Error listening!";
@@ -27,7 +27,7 @@ void ServerCore::incomingConnection(qintptr socketDescriptor)
 	m_socket->setSocketDescriptor(socketDescriptor);
 
 	qDebug() << "Socket number " << socketDescriptor << endl
-			 << "Client connectrd.";
+             << "Client connected.";
 	qDebug() << "Send client status CONNECTED.";
 
 	m_socket->write("You are connected.");
