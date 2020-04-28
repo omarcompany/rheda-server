@@ -17,6 +17,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
         src/databaseengine.h \
-        src/servercore.h
+        src/servercore.h \
+        src/user.h
 
 INCLUDEPATH += src

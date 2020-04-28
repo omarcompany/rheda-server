@@ -2,6 +2,7 @@
 
 #include <QString>
 #include <QDebug>
+#include <QTcpSocket>
 
 namespace  {const int PORT_NUMBER = 1272;}
 
@@ -35,7 +36,7 @@ void ServerCore::incomingConnection(qintptr socketDescriptor)
 
 void ServerCore::socketReady()
 {
-	if(m_socket->waitForConnected(1000)) {
+	if (m_socket->waitForConnected(1000)) {
 		m_socket->waitForReadyRead(1000);
 		/*
 		 * Читаем сообщение от клиента здесь
@@ -46,4 +47,5 @@ void ServerCore::socketReady()
 void ServerCore::socketDisconnect()
 {
     qDebug() << "disconnected";
+	socketReady(); //Пока что костыль подпирающий то, что сервер после одного подключения прекращает слушать порт
 }

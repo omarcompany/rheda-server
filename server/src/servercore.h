@@ -2,7 +2,7 @@
 #define SERVERCORE_H
 
 #include <QTcpServer>
-#include <QTcpSocket>
+class QTcpSocket;
 
 class ServerCore : public QTcpServer
 {
