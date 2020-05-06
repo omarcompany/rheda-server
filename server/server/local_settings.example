@@ -1,0 +1,14 @@
+# Шаблон файла локальных настроек local_settings.py
+# После редактирования сохранить содержимое файла в local_settings.py
+# Файл local_settings.py в открытый доступ не выкладывать
+
+import socket
+
+# For generating secret key you can use https://djecrety.ir/
+SECRET_KEY = 'here your SECRET_KEY'
+
+# Debug mode
+if socket.gethostname() == 'main server hostname':
+    DEBUG = False
+else:
+    DEBUG = True
