@@ -76,3 +76,12 @@ Thumbs.db
 /build*
 
 /rheda-env
+#virtual environment for windows
+\.idea
+\rheda-env
+
+#SECURITY files
+local_settings.py
+
+#Database files
+*.sql*
