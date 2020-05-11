@@ -1,0 +1,8 @@
+{
+  "name": "Rheda API server",
+  "description": "Rheda API server.",
+  "image": "heroku/python",
+  "repository": "https://github.com/omarcompany/rheda-server/",
+  "keywords": ["python", "django" ],
+  "addons": [ "heroku-postgresql" ]
+}
