@@ -15,7 +15,7 @@ from .settings_common import *  # noqa: F401,F403
 
 DEBUG = True
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'NOT_FOR_PRODUCTION')
 
 
 # Database

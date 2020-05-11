@@ -16,11 +16,6 @@ sudo ./install_virtualenv.sh
 ```bash
 source rheda-env/bin/activate
 ```
-* Сгенерировать SECRET_KEY на [сайте Djecrety](https://djecrety.ir/)
-* Экспортировать переменную окружения:
-```bash
-export SECRET_KEY="secret_django_key"
-```
 
 * Применить миграции к базе данных, после чего запустить сервер:
 ```bash
