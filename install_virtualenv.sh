@@ -1,15 +1,16 @@
 #!  /bin/bash
 
-readonly SOURSE_FILE=./rheda-env/bin/activate
+readonly SOURCE_FILE=./rheda-env/bin/activate
 
 #Установка питона третьего, для тех, у кого нет
 sudo apt install python3
-apt install python3-pip
+sudo apt-get install python3-venv
+sudo apt install python3-pip
 pip3 install virtualenv
 
 #Установка и активация виртуального окружения
 python3 -m venv rheda-env
-source ${SOURSE_FILE}
+source ${SOURCE_FILE}
 
 #Установка нужных для проекта пакетов внутри виртуального окружения
 pip3 install djangorestframework
