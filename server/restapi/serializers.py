@@ -27,3 +27,5 @@ class MessageSerializer(serializers.ModelSerializer):
         )
         message.save()
         return message
+
+    
