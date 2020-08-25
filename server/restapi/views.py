@@ -1,6 +1,7 @@
 from rest_framework import generics
-from .serializers import AccountSerializer, MessageSerializer
-from .models import Messages
+from .serializers import AccountSerializer, MessageSerializer, \
+    AccountListSerializer
+from .models import Messages, Account
 
 
 class UserView (generics.CreateAPIView):
@@ -31,5 +32,14 @@ class MessageListView(generics.ListAPIView):
             queryset = queryset.filter(sender_id=sender)
         if recipient is not None:
             queryset = queryset.filter(recipient_id=recipient)
+
+        return queryset
+
+
+class AccountListView(generics.ListAPIView):
+    serializer_class = AccountListSerializer
+
+    def get_queryset(self):
+        queryset = Account.objects.all()
 
         return queryset

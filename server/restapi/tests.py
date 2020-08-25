@@ -18,6 +18,21 @@ class SignupTestCase(TestCase):
         response = c.post('/api/signup', {'name': ''})
         self.assertEqual(response.status_code, 400)
 
+    def test_user_can_get_account_list(self):
+        """User can signup with any name and receive id"""
+        c1 = Client()
+        request1 = {'name': 'Vlad'}
+        c1.post('/api/signup', request1)
+
+        c2 = Client()
+        request2 = {'name': 'Bran'}
+        c2.post('/api/signup', request2)
+
+        c3 = Client()
+        response = c3.get('/api/accountList')
+
+        self.assertEqual(response.status_code, 200)
+
 
 class SendMessageTestCase(TestCase):
     """User can send message to another user"""
