@@ -14,6 +14,12 @@ class AccountSerializer(serializers.ModelSerializer):
         return user
 
 
+class AccountListSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Account
+        fields = ['id', 'name']
+
+
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Messages
